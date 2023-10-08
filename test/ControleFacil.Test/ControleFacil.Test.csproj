@@ -22,4 +22,8 @@
     </PackageReference>
   </ItemGroup>
 
+  <ItemGroup>
+    <ProjectReference Include="..\..\src\ControleFacil.Api\ControleFacil.Api.csproj" />
+  </ItemGroup>
+
 </Project>
