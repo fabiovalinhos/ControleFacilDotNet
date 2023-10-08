@@ -1,0 +1,32 @@
+version: '3.1'
+
+services:
+  postgres:
+    image: postgres
+    container_name: my_postgres_dotnet
+    restart: always
+    environment:
+      POSTGRES_DB: controle-facil
+      POSTGRES_USER: postgres
+      POSTGRES_PASSWORD: 123456
+    ports:
+      - "5432:5432"
+    volumes:
+      - pg_data:/var/lib/postgresql/data
+  pgadmin:
+    image: dpage/pgadmin4
+    container_name: my_pgadmin_dotnet
+    restart: always
+    environment:
+      PGADMIN_DEFAULT_EMAIL: admin@example.com
+      PGADMIN_DEFAULT_PASSWORD: admin
+    ports:
+      - "4040:80"
+    volumes:
+      - pgadmin_data:/var/lib/pgadmin
+    depends_on:
+      - postgres
+
+volumes:
+  pg_data:
+  pgadmin_data:

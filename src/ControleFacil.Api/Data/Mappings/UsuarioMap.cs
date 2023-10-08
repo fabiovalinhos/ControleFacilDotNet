@@ -31,7 +31,9 @@ namespace ControleFacil.Api.Data.Mappings
             builder.Property(p => p.DataInativacao)
             .HasColumnType("timestamp");
 
-            throw new NotImplementedException();
+            // Que horror, eu tive que comentar esta linha pois nao estava gerando meu migration
+            //  Este throw abaixo é padrão
+            // throw new NotImplementedException();
         }
     }
 }
