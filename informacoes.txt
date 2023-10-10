@@ -1,0 +1,5 @@
+Criando o CRUD
+1 Modelo / entidade
+2 Repositório
+3 Serviço
+4 Controller
