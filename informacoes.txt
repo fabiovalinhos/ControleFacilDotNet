@@ -1,5 +1,6 @@
 Criando o CRUD
 1 Modelo / entidade
-2 Repositório
-3 Serviço
-4 Controller
+2 DTO ou Contrato
+3 Repositório
+4 Serviço
+5 Controller
