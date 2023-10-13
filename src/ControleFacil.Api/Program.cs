@@ -1,4 +1,6 @@
 using System.Text;
+using AutoMapper;
+using ControleFacil.Api.AutoMapper;
 using ControleFacil.Api.Data;
 using ControleFacil.Api.Domain.Repository.Classes;
 using ControleFacil.Api.Domain.Repository.Interfaces;
@@ -29,9 +31,18 @@ static void ConfigurarInjecaoDeDependencia(WebApplicationBuilder builder)
          ServiceLifetime.Transient,
          ServiceLifetime.Transient);
 
+    var config = new MapperConfiguration(cfg =>
+    {
+        cfg.AddProfile<UsuarioProfile>();
+        // posso colocar aqui outros profiles
+    });
+
+    IMapper mapper = config.CreateMapper();
+
     builder.Services
     .AddSingleton(builder.Configuration)
     .AddSingleton(builder.Environment)
+    .AddSingleton(mapper)
     .AddScoped<IUsuarioRepository, UsuarioRepository>();
 }
 
