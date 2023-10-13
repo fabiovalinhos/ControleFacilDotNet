@@ -38,6 +38,50 @@ namespace ControleFacil.Api.Domain.Services.Classes
             return _mapper.Map<UsuarioResponseContract>(usuario);
         }
 
+        public async Task<UsuarioResponseContract> Atualizar(long id, UsuarioRequestContract entidade, long idUsuario)
+        {
+            _ = await Obter(id) ?? throw new Exception("Usuário não encontrado para atualização");
+
+            var usuario = _mapper.Map<Usuario>(entidade);
+
+            usuario.Id = id;
+            usuario.Senha = GerarHashSenha(entidade.Senha);
+
+            usuario = await _usuarioRepository.Atualizar(usuario);
+
+            return _mapper.Map<UsuarioResponseContract>(usuario);
+        }
+
+        public Task<UsuarioLoginResponseContract> Autenticar(UsuarioLoginRequestContract usuarioLoginRequestContract)
+        {
+            throw new NotImplementedException();
+        }
+
+        public async Task Inativar(long id, long idUsuario)
+        {
+            var usuario = await Obter(id) ?? throw new Exception("Usuário não encontrado para inativação");
+            await _usuarioRepository.Deletar(_mapper.Map<Usuario>(usuario));
+        }
+
+        public async Task<IEnumerable<UsuarioResponseContract>> Obter(long idUsuario)
+        {
+            return await Obter(idUsuario);
+        }
+
+        public async Task<UsuarioResponseContract> Obter(long id, long idUsuario)
+        {
+            var usuario = await _usuarioRepository.Obter(id);
+
+            return _mapper.Map<UsuarioResponseContract>(usuario);
+        }
+
+        public async Task<UsuarioResponseContract> Obter(string email)
+        {
+            var usuario = await _usuarioRepository.Obter(email);
+
+            return _mapper.Map<UsuarioResponseContract>(usuario);
+        }
+
         private string GerarHashSenha(string senha)
         {
             string hashSenha;
@@ -48,31 +92,8 @@ namespace ControleFacil.Api.Domain.Services.Classes
                 byte[] bytesHashSenha = sha256.ComputeHash(bytesSenha);
                 hashSenha = BitConverter.ToString(bytesHashSenha).ToLower();
             }
-        }
 
-        public Task<UsuarioResponseContract> Atualizar(long id, UsuarioRequestContract entidade, long idUsuario)
-        {
-            throw new NotImplementedException();
-        }
-
-        public Task<UsuarioLoginResponseContract> Autenticar(UsuarioLoginRequestContract usuarioLoginRequestContract)
-        {
-            throw new NotImplementedException();
-        }
-
-        public Task Inativar(long id, long idUsuario)
-        {
-            throw new NotImplementedException();
-        }
-
-        public Task<IEnumerable<UsuarioResponseContract>> Obter(long idUsuario)
-        {
-            throw new NotImplementedException();
-        }
-
-        public Task<UsuarioResponseContract> Obter(long id, long idUsuario)
-        {
-            throw new NotImplementedException();
+            return hashSenha;
         }
     }
 }
