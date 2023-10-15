@@ -34,7 +34,6 @@ namespace ControleFacil.Api.Migrations
                         .HasColumnType("timestamp");
 
                     b.Property<DateTime?>("DataInativacao")
-                        .IsRequired()
                         .HasColumnType("timestamp");
 
                     b.Property<string>("Email")

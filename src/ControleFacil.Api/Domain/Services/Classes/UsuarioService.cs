@@ -32,6 +32,7 @@ namespace ControleFacil.Api.Domain.Services.Classes
             var usuario = _mapper.Map<Usuario>(entidade);
 
             usuario.Senha = GerarHashSenha(usuario.Senha);
+            usuario.DataCadastro = DateTime.Now;
 
             usuario = await _usuarioRepository.Adicionar(usuario);
 
@@ -59,13 +60,15 @@ namespace ControleFacil.Api.Domain.Services.Classes
 
         public async Task Inativar(long id, long idUsuario)
         {
-            var usuario = await Obter(id) ?? throw new Exception("Usuário não encontrado para inativação");
+            var usuario = await _usuarioRepository.Obter(id) ?? throw new Exception("Usuário não encontrado para inativação");
             await _usuarioRepository.Deletar(_mapper.Map<Usuario>(usuario));
         }
 
         public async Task<IEnumerable<UsuarioResponseContract>> Obter(long idUsuario)
         {
-            return await Obter(idUsuario);
+            var usuarios = await _usuarioRepository.Obter();
+
+            return usuarios.Select(usuario => _mapper.Map<UsuarioResponseContract>(usuario));
         }
 
         public async Task<UsuarioResponseContract> Obter(long id, long idUsuario)
@@ -90,7 +93,7 @@ namespace ControleFacil.Api.Domain.Services.Classes
             {
                 byte[] bytesSenha = Encoding.UTF8.GetBytes(senha);
                 byte[] bytesHashSenha = sha256.ComputeHash(bytesSenha);
-                hashSenha = BitConverter.ToString(bytesHashSenha).ToLower();
+                hashSenha = BitConverter.ToString(bytesHashSenha).Replace("-", "").Replace("-", "").ToLower();
             }
 
             return hashSenha;

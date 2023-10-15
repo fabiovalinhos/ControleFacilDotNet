@@ -12,7 +12,7 @@ using Npgsql.EntityFrameworkCore.PostgreSQL.Metadata;
 namespace ControleFacil.Api.Migrations
 {
     [DbContext(typeof(ApplicationContext))]
-    [Migration("20231008215443_CriarEntidadeUsuario")]
+    [Migration("20231015120844_CriarEntidadeUsuario")]
     partial class CriarEntidadeUsuario
     {
         /// <inheritdoc />
@@ -37,7 +37,6 @@ namespace ControleFacil.Api.Migrations
                         .HasColumnType("timestamp");
 
                     b.Property<DateTime?>("DataInativacao")
-                        .IsRequired()
                         .HasColumnType("timestamp");
 
                     b.Property<string>("Email")

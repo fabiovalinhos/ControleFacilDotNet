@@ -21,7 +21,7 @@ namespace ControleFacil.Api.Migrations
                     Email = table.Column<string>(type: "VARCHAR", nullable: false),
                     Senha = table.Column<string>(type: "VARCHAR", nullable: false),
                     DataCadastro = table.Column<DateTime>(type: "timestamp", nullable: false),
-                    DataInativacao = table.Column<DateTime>(type: "timestamp", nullable: false)
+                    DataInativacao = table.Column<DateTime>(type: "timestamp", nullable: true)
                 },
                 constraints: table =>
                 {

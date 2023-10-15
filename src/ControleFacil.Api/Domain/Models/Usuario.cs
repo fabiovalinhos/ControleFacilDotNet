@@ -21,7 +21,6 @@ namespace ControleFacil.Api.Domain.Models
         [Required]
         public DateTime DataCadastro { get; set; }
 
-        [Required]
         public DateTime? DataInativacao { get; set; }
     }
 }

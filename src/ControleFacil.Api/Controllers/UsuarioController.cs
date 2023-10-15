@@ -9,6 +9,8 @@ using Microsoft.AspNetCore.Mvc;
 
 namespace ControleFacil.Api.Controllers
 {
+    [ApiController]
+    [Route("usuarios")]
     public class UsuarioController : ControllerBase
     {
 

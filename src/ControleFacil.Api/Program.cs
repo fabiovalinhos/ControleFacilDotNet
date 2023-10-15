@@ -4,6 +4,8 @@ using ControleFacil.Api.AutoMapper;
 using ControleFacil.Api.Data;
 using ControleFacil.Api.Domain.Repository.Classes;
 using ControleFacil.Api.Domain.Repository.Interfaces;
+using ControleFacil.Api.Domain.Services.Classes;
+using ControleFacil.Api.Domain.Services.Interfaces;
 using Microsoft.AspNetCore.Authentication.JwtBearer;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.Extensions.Configuration;
@@ -43,7 +45,9 @@ static void ConfigurarInjecaoDeDependencia(WebApplicationBuilder builder)
     .AddSingleton(builder.Configuration)
     .AddSingleton(builder.Environment)
     .AddSingleton(mapper)
-    .AddScoped<IUsuarioRepository, UsuarioRepository>();
+    .AddScoped<IUsuarioRepository, UsuarioRepository>()
+    .AddScoped<IUsuarioService, UsuarioService>();
+    //quando for solicitado uma IUsuarioRepository, será devolvido uma instancia de UsuarioRepository
 }
 
 // Configura o serviços da API.
