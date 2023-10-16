@@ -1,3 +1,12 @@
+Passo a passo de como criar uma entidade
+- Criar o Modelo
+- Criar o mapeamento
+- Adicionar mapeamento no ApplicationContext
+- Criar a migration da nova CriarEntidadeUsuario (dotnet ef migrations add CriarEntidadeUsuario ou CriarEntidadeNaturezaDeLancamento)
+- Executar migration (dotnet ef database update)
+
+
+
 Criando o CRUD
 1 Modelo / entidade
 2 DTO ou Contrato

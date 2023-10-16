@@ -11,6 +11,7 @@ namespace ControleFacil.Api.Data
     public class ApplicationContext : DbContext
     {
         public DbSet<Usuario> Usuario { get; set; }
+        public DbSet<NaturezaDeLancamento> NaturezaDeLancamento { get; set; }
 
         public ApplicationContext(DbContextOptions<ApplicationContext> options) : base(options) { }
 
@@ -19,6 +20,7 @@ namespace ControleFacil.Api.Data
             base.OnModelCreating(modelBuilder);
 
             modelBuilder.ApplyConfiguration(new UsuarioMap());
+            modelBuilder.ApplyConfiguration(new NaturezaDeLancamentoMap());
         }
     }
 }
