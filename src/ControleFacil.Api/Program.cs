@@ -8,7 +8,6 @@ using ControleFacil.Api.Domain.Services.Classes;
 using ControleFacil.Api.Domain.Services.Interfaces;
 using Microsoft.AspNetCore.Authentication.JwtBearer;
 using Microsoft.EntityFrameworkCore;
-using Microsoft.Extensions.Configuration;
 using Microsoft.IdentityModel.Tokens;
 using Microsoft.OpenApi.Models;
 
@@ -35,8 +34,9 @@ static void ConfigurarInjecaoDeDependencia(WebApplicationBuilder builder)
 
     var config = new MapperConfiguration(cfg =>
     {
-        cfg.AddProfile<UsuarioProfile>();
         // posso colocar aqui outros profiles
+        cfg.AddProfile<UsuarioProfile>();
+        cfg.AddProfile<NaturezaDeLancamentoProfile>();
     });
 
     IMapper mapper = config.CreateMapper();
@@ -47,7 +47,8 @@ static void ConfigurarInjecaoDeDependencia(WebApplicationBuilder builder)
     .AddSingleton(mapper)
     .AddScoped<TokenService>()
     .AddScoped<IUsuarioRepository, UsuarioRepository>()
-    .AddScoped<IUsuarioService, UsuarioService>();
+    .AddScoped<IUsuarioService, UsuarioService>()
+    .AddScoped<INaturezaDeLancamentoRepository, NaturezaLancamentoRepository>();
     //quando for solicitado uma IUsuarioRepository, será devolvido uma instancia de UsuarioRepository
 }
 

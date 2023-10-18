@@ -1,7 +1,3 @@
-using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Threading.Tasks;
 using ControleFacil.Api.Data.Mappings;
 using ControleFacil.Api.Domain.Models;
 using Microsoft.EntityFrameworkCore;
