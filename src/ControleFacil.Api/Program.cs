@@ -1,6 +1,7 @@
 using System.Text;
 using AutoMapper;
 using ControleFacil.Api.AutoMapper;
+using ControleFacil.Api.Contract.NaturezaDeLancamento;
 using ControleFacil.Api.Data;
 using ControleFacil.Api.Domain.Repository.Classes;
 using ControleFacil.Api.Domain.Repository.Interfaces;
@@ -48,7 +49,8 @@ static void ConfigurarInjecaoDeDependencia(WebApplicationBuilder builder)
     .AddScoped<TokenService>()
     .AddScoped<IUsuarioRepository, UsuarioRepository>()
     .AddScoped<IUsuarioService, UsuarioService>()
-    .AddScoped<INaturezaDeLancamentoRepository, NaturezaLancamentoRepository>();
+    .AddScoped<INaturezaDeLancamentoRepository, NaturezaLancamentoRepository>()
+    .AddScoped<IService<NaturezaDeLancamentoRequestContract, NaturezaDeLancamentoResponseContract, long>, NaturezaDeLancamentoService>();
     //quando for solicitado uma IUsuarioRepository, será devolvido uma instancia de UsuarioRepository
 }
 
