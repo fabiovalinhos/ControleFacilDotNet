@@ -45,7 +45,7 @@ namespace ControleFacil.Api.Domain.Services.Classes
             naturezaDeLancamento.Descricao = entidade.Descricao;
             naturezaDeLancamento.Observacao = entidade.Observacao;
 
-            naturezaDeLancamento = await _naturezaDeLancamentoRepository.Adicionar(naturezaDeLancamento);
+            naturezaDeLancamento = await _naturezaDeLancamentoRepository.Atualizar(naturezaDeLancamento);
 
             return _mapper.Map<NaturezaDeLancamentoResponseContract>(naturezaDeLancamento);
         }
