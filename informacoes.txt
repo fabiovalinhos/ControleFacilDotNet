@@ -9,7 +9,7 @@ Passo a passo de como criar uma entidade
 
 Criando o CRUD
 1 Modelo / entidade
-2 DTO ou Contrato
-3 Repositório
+2 Repositório
+3 DTO ou Contrato
 4 Serviço
 5 Controller

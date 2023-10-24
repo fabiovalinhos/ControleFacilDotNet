@@ -21,10 +21,10 @@ namespace ControleFacil.Api.Domain.Models
         public string Descricao { get; set; } = string.Empty;
 
         [Required(ErrorMessage = "O campo ValorOriginal é obrigatório")]
-        public long ValorOriginal { get; set; }
+        public double ValorOriginal { get; set; }
 
         [Required(ErrorMessage = "O campo ValorPago é obrigatório")]
-        public long ValorPago { get; set; }
+        public double ValorPago { get; set; }
 
         public string? Observacao { get; set; } = string.Empty;
 
