@@ -13,3 +13,6 @@ Criando o CRUD
 3 DTO ou Contrato
 4 Serviço
 5 Controller
+
+
+dotnet ef migrations add CriarEntidadeAreceber
