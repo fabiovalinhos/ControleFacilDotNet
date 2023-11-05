@@ -1,5 +1,6 @@
 using ControleFacil.Api.Contract.Areceber;
 using ControleFacil.Api.Domain.Services.Interfaces;
+using ControleFacil.Api.Exceptions;
 using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Mvc;
 
@@ -28,6 +29,10 @@ namespace ControleFacil.Api.Controllers
             {
                 this._idUsuario = ObterIdUsuarioLogado();
                 return Created("", await _areceberService.Adicionar(contrato, _idUsuario));
+            }
+            catch (BadRequestException ex)
+            {
+                return BadRequest(RetornarModelBadRequest(ex));
             }
             catch (System.Exception ex)
             {
@@ -62,6 +67,10 @@ namespace ControleFacil.Api.Controllers
                 this._idUsuario = ObterIdUsuarioLogado();
                 return Ok(await _areceberService.Obter(id, _idUsuario));
             }
+            catch (NotFoundException ex)
+            {
+                return NotFound(RetornarModelNotFound(ex));
+            }
             catch (System.Exception ex)
             {
                 return Problem(ex.Message);
@@ -79,6 +88,14 @@ namespace ControleFacil.Api.Controllers
                 this._idUsuario = ObterIdUsuarioLogado();
                 return Ok(await _areceberService.Atualizar(id, contrato, _idUsuario));
             }
+            catch (NotFoundException ex)
+            {
+                return NotFound(RetornarModelNotFound(ex));
+            }
+            catch (BadRequestException ex)
+            {
+                return BadRequest(RetornarModelBadRequest(ex));
+            }
             catch (System.Exception ex)
             {
                 return Problem(ex.Message);
@@ -90,12 +107,15 @@ namespace ControleFacil.Api.Controllers
         [Authorize]
         public async Task<IActionResult> Deletar(long id)
         {
-
             try
             {
                 this._idUsuario = ObterIdUsuarioLogado();
                 await _areceberService.Inativar(id, _idUsuario);
                 return NoContent();
+            }
+            catch (NotFoundException ex)
+            {
+                return NotFound(RetornarModelNotFound(ex));
             }
             catch (System.Exception ex)
             {

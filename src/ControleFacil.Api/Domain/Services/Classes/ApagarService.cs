@@ -3,6 +3,7 @@ using ControleFacil.Api.Contract.Apagar;
 using ControleFacil.Api.Domain.Models;
 using ControleFacil.Api.Domain.Repository.Interfaces;
 using ControleFacil.Api.Domain.Services.Interfaces;
+using ControleFacil.Api.Exceptions;
 
 namespace ControleFacil.Api.Domain.Services.Classes
 {
@@ -26,6 +27,7 @@ namespace ControleFacil.Api.Domain.Services.Classes
             ApagarRequestContract entidade,
             long idUsuario)
         {
+            Validar(entidade);
             Apagar Apagar = _mapper.Map<Apagar>(entidade);
 
             Apagar.DataCadastro = DateTime.Now;
@@ -44,6 +46,7 @@ namespace ControleFacil.Api.Domain.Services.Classes
              ApagarRequestContract entidade,
              long idUsuario)
         {
+            Validar(entidade);
             Apagar apagar = await ObterPorIdVinculadoIdUsuario(id, idUsuario);
 
             // o que está comentado é uma segunda forma de fazer
@@ -96,10 +99,18 @@ namespace ControleFacil.Api.Domain.Services.Classes
             var apagar = await _apagarRepository.Obter(id);
             if (apagar is null || apagar.IdUsuario != idUsuario)
             {
-                throw new Exception($"Não foi enconrada nenhum título apagar pelo id {id}");
+                throw new NotFoundException($"Não foi enconrada nenhum título apagar pelo id {id}");
             }
 
             return apagar;
+        }
+
+        private void Validar(ApagarRequestContract entidade)
+        {
+            if (entidade.ValorOriginal < 0 || entidade.ValorPago < 0)
+            {
+                throw new BadRequestException("Os campos ValorOriginal e ValorPagoß não podem ser negativos.");
+            }
         }
     }
 }

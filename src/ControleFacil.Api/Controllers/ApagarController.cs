@@ -1,5 +1,7 @@
+using ControleFacil.Api.Contract;
 using ControleFacil.Api.Contract.Apagar;
 using ControleFacil.Api.Domain.Services.Interfaces;
+using ControleFacil.Api.Exceptions;
 using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Mvc;
 
@@ -23,13 +25,20 @@ namespace ControleFacil.Api.Controllers
         [Authorize]
         public async Task<IActionResult> Adicionar(ApagarRequestContract contrato)
         {
-
             try
             {
                 this._idUsuario = ObterIdUsuarioLogado();
                 return Created("", await _apagarService.Adicionar(contrato, _idUsuario));
             }
-            catch (System.Exception ex)
+            catch (NotFoundException ex)
+            {
+                return NotFound(RetornarModelNotFound(ex));
+            }
+            catch (BadRequestException ex)
+            {
+                return BadRequest(RetornarModelBadRequest(ex));
+            }
+            catch (Exception ex)
             {
                 return Problem(ex.Message);
             }
@@ -39,13 +48,16 @@ namespace ControleFacil.Api.Controllers
         [Authorize]
         public async Task<IActionResult> Obter()
         {
-
             try
             {
                 this._idUsuario = ObterIdUsuarioLogado();
                 return Ok(await _apagarService.Obter(_idUsuario));
             }
-            catch (System.Exception ex)
+            catch (NotFoundException ex)
+            {
+                return NotFound(RetornarModelNotFound(ex));
+            }
+            catch (Exception ex)
             {
                 return Problem(ex.Message);
             }
@@ -56,13 +68,16 @@ namespace ControleFacil.Api.Controllers
         [Authorize]
         public async Task<IActionResult> Obter(long id)
         {
-
             try
             {
                 this._idUsuario = ObterIdUsuarioLogado();
                 return Ok(await _apagarService.Obter(id, _idUsuario));
             }
-            catch (System.Exception ex)
+            catch (NotFoundException ex)
+            {
+                return NotFound(RetornarModelNotFound(ex));
+            }
+            catch (Exception ex)
             {
                 return Problem(ex.Message);
             }
@@ -73,13 +88,20 @@ namespace ControleFacil.Api.Controllers
         [Authorize]
         public async Task<IActionResult> Atualizar(long id, ApagarRequestContract contrato)
         {
-
             try
             {
                 this._idUsuario = ObterIdUsuarioLogado();
                 return Ok(await _apagarService.Atualizar(id, contrato, _idUsuario));
             }
-            catch (System.Exception ex)
+            catch (NotFoundException ex)
+            {
+                return NotFound(RetornarModelNotFound(ex));
+            }
+            catch (BadRequestException ex)
+            {
+                return BadRequest(RetornarModelBadRequest(ex));
+            }
+            catch (Exception ex)
             {
                 return Problem(ex.Message);
             }
@@ -90,14 +112,17 @@ namespace ControleFacil.Api.Controllers
         [Authorize]
         public async Task<IActionResult> Deletar(long id)
         {
-
             try
             {
                 this._idUsuario = ObterIdUsuarioLogado();
                 await _apagarService.Inativar(id, _idUsuario);
                 return NoContent();
             }
-            catch (System.Exception ex)
+            catch (NotFoundException ex)
+            {
+                return NotFound(RetornarModelNotFound(ex));
+            }
+            catch (Exception ex)
             {
                 return Problem(ex.Message);
             }

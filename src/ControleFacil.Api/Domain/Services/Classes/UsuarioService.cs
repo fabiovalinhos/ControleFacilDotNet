@@ -6,6 +6,7 @@ using ControleFacil.Api.Contract.Usuario;
 using ControleFacil.Api.Domain.Models;
 using ControleFacil.Api.Domain.Repository.Interfaces;
 using ControleFacil.Api.Domain.Services.Interfaces;
+using ControleFacil.Api.Exceptions;
 
 namespace ControleFacil.Api.Domain.Services.Classes
 {
@@ -41,7 +42,7 @@ namespace ControleFacil.Api.Domain.Services.Classes
 
         public async Task<UsuarioResponseContract> Atualizar(long id, UsuarioRequestContract entidade, long idUsuario)
         {
-            _ = await Obter(id) ?? throw new Exception("Usuário não encontrado para atualização");
+            _ = await Obter(id) ?? throw new NotFoundException("Usuário não encontrado para atualização");
 
             var usuario = _mapper.Map<Usuario>(entidade);
 
@@ -74,7 +75,8 @@ namespace ControleFacil.Api.Domain.Services.Classes
 
         public async Task Inativar(long id, long idUsuario)
         {
-            var usuario = await _usuarioRepository.Obter(id) ?? throw new Exception("Usuário não encontrado para inativação");
+            var usuario = await _usuarioRepository.Obter(id) ??
+            throw new NotFoundException("Usuário não encontrado para inativação");
             await _usuarioRepository.Deletar(_mapper.Map<Usuario>(usuario));
         }
 

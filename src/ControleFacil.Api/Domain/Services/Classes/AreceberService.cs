@@ -3,6 +3,7 @@ using ControleFacil.Api.Contract.Areceber;
 using ControleFacil.Api.Domain.Models;
 using ControleFacil.Api.Domain.Repository.Interfaces;
 using ControleFacil.Api.Domain.Services.Interfaces;
+using ControleFacil.Api.Exceptions;
 
 namespace ControleFacil.Api.Domain.Services.Classes
 {
@@ -26,13 +27,11 @@ namespace ControleFacil.Api.Domain.Services.Classes
             AreceberRequestContract entidade,
             long idUsuario)
         {
+            Validar(entidade);
             Areceber Areceber = _mapper.Map<Areceber>(entidade);
 
             Areceber.DataCadastro = DateTime.Now;
             Areceber.IdUsuario = idUsuario;
-
-            // poderia ter uma validação aqui para checar
-            //  se tem tudo que eu preciso esta no meu contrato
 
             Areceber = await _areceberRepository.Adicionar(Areceber);
 
@@ -44,6 +43,7 @@ namespace ControleFacil.Api.Domain.Services.Classes
              AreceberRequestContract entidade,
              long idUsuario)
         {
+            Validar(entidade);
             Areceber areceber = await ObterPorIdVinculadoIdUsuario(id, idUsuario);
 
             var contrato = _mapper.Map<Areceber>(entidade);
@@ -82,10 +82,18 @@ namespace ControleFacil.Api.Domain.Services.Classes
             var areceber = await _areceberRepository.Obter(id);
             if (areceber is null || areceber.IdUsuario != idUsuario)
             {
-                throw new Exception($"Não foi enconrada nenhum título Areceber pelo id {id}");
+                throw new NotFoundException($"Não foi enconrada nenhum título Areceber pelo id {id}");
             }
 
             return areceber;
+        }
+
+        private void Validar(AreceberRequestContract entidade)
+        {
+            if (entidade.ValorOriginal < 0 || entidade.ValorRecebido < 0)
+            {
+                throw new BadRequestException("Os campos ValorOriginal e ValorRecebimento não podem ser negativos.");
+            }
         }
     }
 }
