@@ -1,6 +1,6 @@
 {
   "version": 2,
-  "dgSpecHash": "GdvwbfVWwkw0hD3O4u7SaAuY/TL/ftwweO+RAoijejaora1bsMS3mjZZPjw/z49PP6oZqwnK1yT6lT97QrLEHA==",
+  "dgSpecHash": "Dj5jVzOvK02TQZEb08A7t8vyPte8lBbsAQ7ubizyExoGfwM2cwq6DmYnihW0zWPCK0FV24E88zGo1JGHW+86Kw==",
   "success": true,
   "projectFilePath": "/Users/fabiovilalba/Documents/dotnet-udemy/ControleFacil/src/ControleFacil.Api/ControleFacil.Api.csproj",
   "expectedPackageFiles": [
@@ -76,7 +76,10 @@
     "/Users/fabiovilalba/.nuget/packages/system.security.permissions/4.5.0/system.security.permissions.4.5.0.nupkg.sha512",
     "/Users/fabiovilalba/.nuget/packages/system.security.principal.windows/4.5.0/system.security.principal.windows.4.5.0.nupkg.sha512",
     "/Users/fabiovilalba/.nuget/packages/system.text.encodings.web/7.0.0/system.text.encodings.web.7.0.0.nupkg.sha512",
-    "/Users/fabiovilalba/.nuget/packages/system.text.json/7.0.0/system.text.json.7.0.0.nupkg.sha512"
+    "/Users/fabiovilalba/.nuget/packages/system.text.json/7.0.0/system.text.json.7.0.0.nupkg.sha512",
+    "/Users/fabiovilalba/.nuget/packages/microsoft.netcore.app.ref/7.0.14/microsoft.netcore.app.ref.7.0.14.nupkg.sha512",
+    "/Users/fabiovilalba/.nuget/packages/microsoft.aspnetcore.app.ref/7.0.14/microsoft.aspnetcore.app.ref.7.0.14.nupkg.sha512",
+    "/Users/fabiovilalba/.nuget/packages/microsoft.netcore.app.host.osx-arm64/7.0.14/microsoft.netcore.app.host.osx-arm64.7.0.14.nupkg.sha512"
   ],
   "logs": []
 }

@@ -1,6 +1,6 @@
 {
   "version": 2,
-  "dgSpecHash": "uS46lQrqDrp2uL0aXvRQoL3M8r3BM8W5ar0vLZDX/VxgUU0QnstfIl2VLyCTIDWKDEZBZj5Nr7PR5fq3S1jmmw==",
+  "dgSpecHash": "tKDuQ60ggKeek2mf+qRZF98eYUEtsvJa1f2vEd4kQ8MJzS6F27QiQePEfERiW+1wouyuR9TRKR3Yxq2ODbiKaA==",
   "success": true,
   "projectFilePath": "/Users/fabiovilalba/Documents/dotnet-udemy/ControleFacil/test/ControleFacil.Test/ControleFacil.Test.csproj",
   "expectedPackageFiles": [
@@ -161,7 +161,9 @@
     "/Users/fabiovilalba/.nuget/packages/xunit.core/2.4.2/xunit.core.2.4.2.nupkg.sha512",
     "/Users/fabiovilalba/.nuget/packages/xunit.extensibility.core/2.4.2/xunit.extensibility.core.2.4.2.nupkg.sha512",
     "/Users/fabiovilalba/.nuget/packages/xunit.extensibility.execution/2.4.2/xunit.extensibility.execution.2.4.2.nupkg.sha512",
-    "/Users/fabiovilalba/.nuget/packages/xunit.runner.visualstudio/2.4.5/xunit.runner.visualstudio.2.4.5.nupkg.sha512"
+    "/Users/fabiovilalba/.nuget/packages/xunit.runner.visualstudio/2.4.5/xunit.runner.visualstudio.2.4.5.nupkg.sha512",
+    "/Users/fabiovilalba/.nuget/packages/microsoft.netcore.app.ref/7.0.14/microsoft.netcore.app.ref.7.0.14.nupkg.sha512",
+    "/Users/fabiovilalba/.nuget/packages/microsoft.aspnetcore.app.ref/7.0.14/microsoft.aspnetcore.app.ref.7.0.14.nupkg.sha512"
   ],
   "logs": []
 }
